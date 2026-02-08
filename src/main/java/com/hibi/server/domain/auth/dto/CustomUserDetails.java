@@ -16,12 +16,14 @@ public class CustomUserDetails implements UserDetails {
     private final String email;
     private final String password;
     private final UserRoleType role;
+    private final Member member;
 
     public CustomUserDetails(Member member) {
         this.id = member.getId();
         this.email = member.getEmail();
         this.password = member.getPassword();
         this.role = member.getRole();
+        this.member = member;
     }
 
     @Override

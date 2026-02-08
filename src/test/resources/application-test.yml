@@ -1,0 +1,47 @@
+# 테스트 환경 설정 (H2 In-Memory Database)
+
+# 서버 설정
+server:
+  port: 8080
+
+# Spring 설정
+spring:
+  # H2 In-Memory Database
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MySQL
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  # JPA 설정
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+
+  # H2 Console (테스트 디버깅용)
+  h2:
+    console:
+      enabled: true
+
+# JWT 설정 (테스트용)
+jwt:
+  secret: test-jwt-secret-key-for-testing-purposes-only-must-be-256-bits-long-for-hs256
+  expiration: 3600000
+  refresh-expiration: 86400000
+
+# API 설정 (테스트용)
+api:
+  version: v1
+  base-url: http://localhost:8080
+
+# 로깅 설정
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.springframework.security: DEBUG

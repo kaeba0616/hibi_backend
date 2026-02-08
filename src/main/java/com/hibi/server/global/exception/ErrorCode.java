@@ -38,9 +38,26 @@ public enum ErrorCode {
     //post 관련 에러 코드
     POST_ALREADY_EXISTS("P001", "해당 날짜에 이미 포스트가 존재합니다.", HttpStatus.CONFLICT),
 
+    // --- 회원 관련 에러 ---
+    MEMBER_NOT_FOUND("M001", "회원을 찾을 수 없습니다.", HttpStatus.NOT_FOUND),
+
+    // --- 신고 관련 에러 (F11) ---
+    REPORT_NOT_FOUND("R001", "신고를 찾을 수 없습니다.", HttpStatus.NOT_FOUND),
+    SELF_REPORT_NOT_ALLOWED("R002", "본인 콘텐츠는 신고할 수 없습니다.", HttpStatus.BAD_REQUEST),
+    DUPLICATE_REPORT("R003", "이미 신고한 콘텐츠입니다.", HttpStatus.CONFLICT),
+    REPORT_TARGET_NOT_FOUND("R004", "신고 대상을 찾을 수 없습니다.", HttpStatus.NOT_FOUND),
+
+    // --- 문의 관련 에러 (F10) ---
+    QUESTION_NOT_FOUND("Q001", "문의를 찾을 수 없습니다.", HttpStatus.NOT_FOUND),
+
+    // --- FAQ 관련 에러 (F9) ---
+    FAQ_NOT_FOUND("F001", "FAQ를 찾을 수 없습니다.", HttpStatus.NOT_FOUND),
+
     // --- 일반적인 에러 코드 ---
     INVALID_INPUT_VALUE("C001", "잘못된 입력 값입니다.", HttpStatus.BAD_REQUEST), // 400 Bad Request
     ENTITY_NOT_FOUND("C002", "요청하신 자원을 찾을 수 없습니다.", HttpStatus.NOT_FOUND), // 404 Not Found
+    ALREADY_EXISTS("C003", "이미 존재합니다.", HttpStatus.CONFLICT), // 409 Conflict
+    DUPLICATE_ENTITY("C004", "중복된 항목입니다.", HttpStatus.CONFLICT), // 409 Conflict
     INTERNAL_SERVER_ERROR("S001", "서버 내부 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR); // 500 Internal Server Error
 
 
