@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -61,6 +62,15 @@ public class GlobalExceptionHandler {
         HttpStatus status = HttpStatus.UNAUTHORIZED;
         log.error("[AuthenticationException] : {}", ex.getMessage());
         ProblemDetail problemDetail = createProblemDetail(status, ErrorCode.AUTHENTICATION_FAILED);
+        return ResponseEntity.status(status).body(problemDetail);
+    }
+
+    // Spring Security 권한 관련 예외 처리 (403 Forbidden)
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ProblemDetail> handleAccessDeniedException(AccessDeniedException ex) {
+        HttpStatus status = HttpStatus.FORBIDDEN;
+        log.error("[AccessDeniedException] : {}", ex.getMessage());
+        ProblemDetail problemDetail = createProblemDetail(status, ErrorCode.UNAUTHORIZED_ACCESS);
         return ResponseEntity.status(status).body(problemDetail);
     }
 

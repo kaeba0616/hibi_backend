@@ -1,0 +1,23 @@
+# MCP (Model Context Protocol) 프로필 설정
+# 통합 테스트 지원을 위한 AI 도구 서버 설정
+
+spring:
+  ai:
+    mcp:
+      server:
+        name: hibi-test-server
+        version: 1.0.0
+
+  # MCP 모드에서는 test 프로필의 H2 DB 사용
+  profiles:
+    include: test
+
+# MCP 서버 포트 (메인 앱과 분리)
+server:
+  port: 8090
+
+# MCP 관련 로깅
+logging:
+  level:
+    com.hibi.server.mcp: DEBUG
+    org.springframework.ai.mcp: DEBUG
