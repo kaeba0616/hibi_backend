@@ -15,6 +15,11 @@ public record SignInResponse(
 ) {
 
     public static SignInResponse of(final String accessToken, final String refreshToken, final Long memberId, final UserRoleType roleType) {
-        return SignInResponse.builder().accessToken(accessToken).refreshToken(refreshToken).build();
+        return SignInResponse.builder()
+                .accessToken(accessToken)
+                .refreshToken(refreshToken)
+                .memberId(memberId)
+                .roleType(roleType)
+                .build();
     }
 }
